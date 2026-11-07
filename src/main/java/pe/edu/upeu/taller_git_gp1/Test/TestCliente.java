@@ -1,5 +1,6 @@
 package pe.edu.upeu.taller_git_gp1.Test;
 
+<<<<<<< HEAD
 import pe.edu.upeu.taller_git_gp1.implementacion.ClienteDaoImpl;
 import pe.edu.upeu.taller_git_gp1.interfaces.IClienteDao;
 import pe.edu.upeu.taller_git_gp1.modelo.Cliente;
@@ -89,4 +90,7 @@ public class TestCliente {
         //t.deleteCliente();
         t.listarCliente();
     }
+=======
+public class TestCliente {
+>>>>>>> dae47a61386747187bd8b06d3783ed4c44bac4ff
 }
