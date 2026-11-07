@@ -12,7 +12,7 @@ public class ConexionDB {
         try {
             if (connection == null || connection.isClosed()) {
                 Class.forName("org.sqlite.JDBC");
-                String url = "jdbc:sqlite:C:/sqlite/db/hotel_KAJ.db";
+                String url = "jdbc:sqlite:C:/sqlite/db/hotel_KAS.db";
                 connection = DriverManager.getConnection(url);
                 connection.setAutoCommit(true);
 
