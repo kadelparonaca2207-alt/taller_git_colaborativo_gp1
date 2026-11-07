@@ -84,7 +84,7 @@ public class TestCliente {
 
     public static void main(String[] args) {
         TestCliente t = new TestCliente();
-        t.insertarCliente();
+        // t.insertarCliente();
         // t.updateCliente();
         //t.deleteCliente();
         t.listarCliente();

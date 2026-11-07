@@ -6,7 +6,9 @@ import pe.edu.upeu.taller_git_gp1.utils.ConexionDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDaoImpl implements IClienteDao {
@@ -52,6 +54,30 @@ public class ClienteDaoImpl implements IClienteDao {
 
     @Override
     public List<Cliente> listAll() {
-        return List.of();
+        List<Cliente> lista = new ArrayList<>();
+        String query = "SELECT * FROM cliente;";
+
+        try (Connection cn = ConexionDB.getConnection();
+             PreparedStatement st = cn.prepareStatement(query);
+             ResultSet rs = st.executeQuery()) {
+
+            while (rs.next()) {
+                Cliente cl = new Cliente();
+
+                cl.setId(rs.getInt("id"));
+                cl.setNombre(rs.getString("nombre"));
+                cl.setApellido(rs.getString("apellido"));
+                cl.setNumero_documento(rs.getInt("numero_documento"));
+                cl.setCorreo(rs.getString("correo"));
+                cl.setTelefono(rs.getString("telefono"));
+
+                lista.add(cl);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("ERROR AL LISTAR " + e.getMessage());
+        }
+
+        return lista;
     }
 }
