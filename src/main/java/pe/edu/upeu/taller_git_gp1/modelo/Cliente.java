@@ -6,12 +6,15 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Cliente {
+
     private final IntegerProperty id = new SimpleIntegerProperty();
     private final StringProperty nombre = new SimpleStringProperty();
     private final StringProperty apellido = new SimpleStringProperty();
     private final IntegerProperty numero_documento = new SimpleIntegerProperty();
     private final StringProperty correo = new SimpleStringProperty();
     private final StringProperty telefono = new SimpleStringProperty();
+
+
 
     public Cliente() {
     }
@@ -91,6 +94,4 @@ public class Cliente {
     public final StringProperty nombreProperty() {
         return nombre;
     }
-
-
 }
