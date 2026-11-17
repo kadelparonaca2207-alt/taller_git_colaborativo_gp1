@@ -11,5 +11,8 @@ module pe.edu.upeu.taller_git_gp1 {
 
 
     opens pe.edu.upeu.taller_git_gp1 to javafx.fxml;
+    opens pe.edu.upeu.taller_git_gp1.controller to javafx.fxml;
+    exports pe.edu.upeu.taller_git_gp1.controller to javafx.fxml;
+
     exports pe.edu.upeu.taller_git_gp1;
 }

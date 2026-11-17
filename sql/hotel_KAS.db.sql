@@ -26,4 +26,11 @@ CREATE TABLE IF NOT EXISTS "reserva" (
 	"estado"	TEXT NOT NULL DEFAULT 'Pendiente',
 	PRIMARY KEY("id" AUTOINCREMENT)
 );
+CREATE TABLE IF NOT EXISTS "usuario" (
+	"idusuario"	INTEGER,
+	"user"	TEXT NOT NULL,
+	"password"	TEXT NOT NULL,
+	"tipoUser"	TEXT NOT NULL,
+	PRIMARY KEY("idusuario" AUTOINCREMENT)
+);
 COMMIT;

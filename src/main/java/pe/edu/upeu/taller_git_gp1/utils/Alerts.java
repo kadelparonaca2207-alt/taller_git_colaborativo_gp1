@@ -3,7 +3,7 @@ package pe.edu.upeu.taller_git_gp1.utils;
 import javafx.scene.control.Alert;
 
 public class Alerts {
-    public static Alert viewAlers(String titulo, String mensaje, String tipo){
+    public static Alert viewAlerts(String titulo, String mensaje, String tipo){
         Alert alert;
         if (tipo.equals("WARNING")){
             alert = new Alert(Alert.AlertType.WARNING);
