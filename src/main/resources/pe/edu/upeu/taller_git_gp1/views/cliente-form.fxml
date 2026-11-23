@@ -6,9 +6,37 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
-</AnchorPane>
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      stylesheets="@style.css" fx:controller="pe.edu.upeu.taller_git_gp1.controller.ClienteFormController"
+      spacing="14.0" prefWidth="430.0" styleClass="form-pane">
+    <padding><Insets top="24.0" right="28.0" bottom="24.0" left="28.0"/></padding>
+    <children>
+        <Label fx:id="lblTitulo" text="Nuevo cliente" styleClass="view-title"/>
+        <GridPane hgap="12.0" vgap="12.0">
+            <columnConstraints>
+                <ColumnConstraints minWidth="115.0"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+            <children>
+                <Label text="Nombre:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtNombre" promptText="Nombre" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Label text="Apellido:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtApellido" promptText="Apellido" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Label text="Documento:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtDocumento" promptText="8 dígitos" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <Label text="Correo:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtCorreo" promptText="correo@ejemplo.com" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <Label text="Teléfono:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtTelefono" promptText="Teléfono" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            </children>
+        </GridPane>
+        <HBox spacing="10.0" alignment="CENTER_RIGHT">
+            <children>
+                <Button text="Cancelar" onAction="#handleCancel"/>
+                <Button text="Guardar" onAction="#handleSave" styleClass="button-login"/>
+            </children>
+        </HBox>
+    </children>
+</VBox>

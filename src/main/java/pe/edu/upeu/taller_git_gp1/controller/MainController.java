@@ -5,7 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import pe.edu.upeu.taller_git_gp1.HelloApplication;
 import pe.edu.upeu.taller_git_gp1.modelo.UserSession;
+import pe.edu.upeu.taller_git_gp1.utils.Alerts;
 
 import java.io.IOException;
 
@@ -38,11 +40,14 @@ public class MainController {
     @FXML
     private void loadView(String fxml) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/pe/edu/upeu/taller_git_colaborativo_gp1/views/" + fxml));
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(
+                    "/pe/edu/upeu/taller_git_gp1/views/" + fxml));
+
             Parent view = loader.load();
             contentArea.getChildren().setAll(view);
-        } catch (IOException e) {
-            System.err.println("Error de carga de la vista " + e.getMessage());
+
+        } catch (IOException | RuntimeException e) {
+            Alerts.viewAlerts("Error", "No se pudo cargar la vista " + fxml + ": " + e.getMessage(), "ERROR").showAndWait();
         }
     }
 
@@ -54,5 +59,9 @@ public class MainController {
     @FXML
     private void showHabitaciones(){
         loadView("habitacion-view.fxml");
+    }
+    @FXML
+    private void showReservas() {
+        loadView("reserva-view.fxml");
     }
 }

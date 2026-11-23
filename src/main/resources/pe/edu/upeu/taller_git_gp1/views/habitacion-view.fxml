@@ -6,9 +6,34 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
-</AnchorPane>
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="pe.edu.upeu.taller_git_gp1.controller.HabitacionController"
+      spacing="12.0" styleClass="content-area">
+    <padding><Insets top="22.0" right="25.0" bottom="22.0" left="25.0"/></padding>
+    <children>
+        <Label text="Gestión de habitaciones" styleClass="view-title"/>
+        <HBox spacing="8.0" alignment="CENTER_LEFT">
+            <children>
+                <TextField fx:id="txtBuscar" promptText="Buscar por número de habitación" HBox.hgrow="ALWAYS"/>
+                <Button text="Buscar" onAction="#handleSearch" styleClass="button-action"/>
+                <Button text="Limpiar" onAction="#handleClear"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Nueva habitación" onAction="#handleNew" styleClass="button-login"/>
+                <Button text="Editar" onAction="#handleEdit" styleClass="button-action-edit"/>
+                <Button text="Eliminar" onAction="#handleDelete" styleClass="button-action-delete"/>
+            </children>
+        </HBox>
+        <TableView fx:id="tableHabitacion" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="55.0"/>
+                <TableColumn fx:id="colNumero" text="N.° habitación" prefWidth="125.0"/>
+                <TableColumn fx:id="colPiso" text="Piso" prefWidth="80.0"/>
+                <TableColumn fx:id="colTipo" text="Tipo" prefWidth="150.0"/>
+                <TableColumn fx:id="colPrecio" text="Precio por noche" prefWidth="150.0"/>
+                <TableColumn fx:id="colEstado" text="Estado" prefWidth="140.0"/>
+            </columns>
+        </TableView>
+    </children>
+</VBox>

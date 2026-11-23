@@ -12,47 +12,81 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="pe.edu.upeu.taller_git_gp1.controller.UsuarioController"
             prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css">
-
     <children>
-        <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <HBox AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0"
+              AnchorPane.topAnchor="0.0">
             <children>
-                <VBox prefWidth="400.0" styleClass="left-pane" HBox.hgrow="ALWAYS">
-                <children>
-                    <Label text="Hotel KAF" textFill="white">
-                        <font>
-                            <Font name="System Bold" size="48.0"/>
-                        </font>
-                    </Label>
-                    <Label text="Sistema de Reserva" textFill="white">
-                        <font>
-                            <Font size="14.0"/>
-                        </font>
-                    </Label>
-                </children>
+                <!-- PANEL IZQUIERDO -->
+                <VBox prefWidth="400.0"
+                      alignment="CENTER"
+                      spacing="14.0"
+                      styleClass="left-pane"
+                      HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Hotel KAF" textFill="white">
+                            <font>
+                                <Font name="System Bold" size="48.0"/>
+                            </font>
+                        </Label>
+                        <Label text="Sistema de Reserva"
+                               textFill="white">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Label>
+                    </children>
                 </VBox>
-                <VBox prefWidth="450.0" spacing="20.0" styleClass="right-pane" HBox.hgrow="ALWAYS">
+
+                <!-- PANEL DERECHO -->
+                <VBox prefWidth="450.0"
+                      spacing="20.0"
+                      styleClass="right-pane"
+                      HBox.hgrow="ALWAYS">
                     <padding>
-                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0"/>
+                        <Insets bottom="40.0"
+                                left="40.0"
+                                right="40.0"
+                                top="40.0"/>
                     </padding>
                     <children>
-                        <Label text="Iniciar sesión" textFill="#4b0082">
+                        <Label text="Iniciar sesión"
+                               textFill="#4b0082">
                             <font>
                                 <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
+
+                        <!-- USUARIO -->
                         <VBox spacing="5.0">
                             <children>
-                                <Label text="Usuario" textFill="#666666"/>
-                                <TextField fx:id="txUser" promptText="Ingrese su usuario"/>
+                                <Label text="Usuario"
+                                       textFill="#666666"/>
+
+                                <TextField fx:id="txUser"
+                                           promptText="Ingrese su usuario"
+                                           onAction="#handleLogin"/>
                             </children>
                         </VBox>
+
+                        <!-- CONTRASEÑA -->
                         <VBox spacing="5.0">
                             <children>
-                                <Label text="Contraseña" textFill="#666666"/>
-                                <PasswordField fx:id="txPass" promptText="Ingrese su contraseña"/>
+                                <Label text="Contraseña"
+                                       textFill="#666666"/>
+                                <PasswordField fx:id="txPass"
+                                               promptText="Ingrese su contraseña"
+                                               onAction="#handleLogin"/>
                             </children>
                         </VBox>
-                        <Button maxWidth="Infinity" mnemonicParsing="false" styleClass="button-login" text="INGRESAR" onAction="#handleLogin">
+
+                        <!-- BOTÓN INGRESAR -->
+                        <Button maxWidth="Infinity"
+                                mnemonicParsing="false"
+                                styleClass="button-login"
+                                text="INGRESAR"
+                                onAction="#handleLogin">
                             <VBox.margin>
                                 <Insets top="10.0"/>
                             </VBox.margin>
@@ -62,5 +96,4 @@
             </children>
         </HBox>
     </children>
-
 </AnchorPane>

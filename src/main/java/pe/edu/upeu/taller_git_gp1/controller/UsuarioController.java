@@ -54,11 +54,10 @@ public class UsuarioController {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setMaximized(true);
-            stage.setTitle("Inicio sesion");
+            stage.setTitle("Hotel KAF - Sistema de reservas");
             stage.show();
         } catch (IOException e) {
-            System.err.println("Error al cargar home " + e.getMessage());
-            e.printStackTrace();
+            Alerts.viewAlerts("Error", "No se pudo abrir la ventana principal: " + e.getMessage(), "ERROR").showAndWait();
         }
     }
 }

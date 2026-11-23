@@ -68,7 +68,7 @@ public class ClienteDaoImpl implements IClienteDao {
                 cl.setNombre(rs.getString("nombre"));
                 cl.setApellido(rs.getString("apellido"));
                 cl.setNumero_documento(rs.getInt("numero_documento"));
-                cl.setCorreo(rs.getString("correo"));
+                cl.setCorreo(rs.getString("correo_electronico"));
                 cl.setTelefono(rs.getString("telefono"));
 
                 lista.add(cl);

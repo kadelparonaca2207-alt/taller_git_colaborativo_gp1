@@ -8,6 +8,8 @@ module pe.edu.upeu.taller_git_gp1 {
     requires org.kordamp.bootstrapfx.core;
     requires java.desktop;
     requires java.sql;
+    requires javafx.graphics;
+    requires javafx.base;
 
 
     opens pe.edu.upeu.taller_git_gp1 to javafx.fxml;

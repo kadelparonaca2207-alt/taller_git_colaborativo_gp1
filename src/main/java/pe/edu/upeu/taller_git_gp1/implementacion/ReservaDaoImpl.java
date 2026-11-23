@@ -180,4 +180,38 @@ public class ReservaDaoImpl implements IReservaDao {
 
         return lista;
     }
+
+    @Override
+    public boolean isDisponible(int idHabitacion, String fechaEntrada,
+                                String fechaSalida, int idReserva) {
+
+        boolean disponible = false;
+
+        String query = "SELECT COUNT(*) FROM reserva " +
+                "WHERE habitacion_id = ? " +
+                "AND estado != 'Cancelada' " +
+                "AND fecha_entrada < ? " +
+                "AND fecha_salida > ? " +
+                "AND id != ?";
+
+        try (Connection cn = ConexionDB.getConnection();
+             PreparedStatement ps = cn.prepareStatement(query)) {
+
+            ps.setInt(1, idHabitacion);
+            ps.setString(2, fechaSalida);
+            ps.setString(3, fechaEntrada);
+            ps.setInt(4, idReserva);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next() && rs.getInt(1) == 0) {
+                disponible = true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al verificar disponibilidad: " + e.getMessage());
+        }
+
+        return disponible;
+    }
 }

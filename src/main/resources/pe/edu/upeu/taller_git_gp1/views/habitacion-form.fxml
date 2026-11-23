@@ -6,9 +6,37 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
-</AnchorPane>
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="pe.edu.upeu.taller_git_gp1.controller.HabitacionFormController"
+      spacing="14.0" prefWidth="430.0" styleClass="form-pane">
+    <padding><Insets top="24.0" right="28.0" bottom="24.0" left="28.0"/></padding>
+    <children>
+        <Label fx:id="lblTitulo" text="Nueva habitación" styleClass="view-title"/>
+        <GridPane hgap="12.0" vgap="12.0">
+            <columnConstraints>
+                <ColumnConstraints minWidth="115.0"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+            <children>
+                <Label text="Número:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtNumero" promptText="Ej. 101" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Label text="Piso:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtPiso" promptText="Ej. 1" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Label text="Tipo:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="cbTipo" promptText="Seleccione tipo" maxWidth="Infinity" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <Label text="Precio por noche:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtPrecio" promptText="Ej. 80.00" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <Label text="Estado:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="cbEstado" maxWidth="Infinity" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            </children>
+        </GridPane>
+        <HBox spacing="10.0" alignment="CENTER_RIGHT">
+            <children>
+                <Button text="Cancelar" onAction="#handleCancel"/>
+                <Button text="Guardar" onAction="#handleSave" styleClass="button-login"/>
+            </children>
+        </HBox>
+    </children>
+</VBox>

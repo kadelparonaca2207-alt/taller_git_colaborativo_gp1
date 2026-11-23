@@ -11,6 +11,8 @@ public interface IReservaDao {
 
     public boolean delete(Reserva r);
 
+    public boolean isDisponible(int idHabitacion, String fechaEntrada,
+                                String fechaSalida, int idReserva);
     public Reserva searchById(int id);
 
     public List<Reserva> listAll();
@@ -18,4 +20,5 @@ public interface IReservaDao {
     public List<Reserva> searchByClienteId(int idCliente);
 
     public List<Reserva> searchByHabitacionId(int idHabitacion);
+
 }

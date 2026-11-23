@@ -12,10 +12,15 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="pe.edu.upeu.taller_git_gp1.controller.MainController"
             prefHeight="600.0" prefWidth="900.0">
-    <!--HEADER-->
+    <!-- HEADER -->
     <top>
-        <HBox alignment="CENTER_LEFT" prefHeight="70.0" styleClass="header" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER_LEFT"
+              prefHeight="70.0"
+              styleClass="header"
+              BorderPane.alignment="CENTER">
+
             <children>
+
                 <Label text="HOTEL KAF" textFill="#4b0082">
                     <font>
                         <Font name="System Bold" size="24.0"/>
@@ -24,13 +29,18 @@
                         <Insets left="10.0"/>
                     </HBox.margin>
                 </Label>
+
                 <Label text="Servicio de hotelería" textFill="#666666">
                     <HBox.margin>
                         <Insets left="10.0"/>
                     </HBox.margin>
                 </Label>
+
                 <Region HBox.hgrow="ALWAYS"/>
-                <Label text="Bienvenido, Usuario" textFill="4b0082" fx:id="lblUsuario">
+
+                <Label text="Bienvenido, Usuario"
+                       textFill="#4b0082"
+                       fx:id="lblUsuario">
                     <font>
                         <Font name="System Italic" size="14.0"/>
                     </font>
@@ -38,40 +48,101 @@
                         <Insets right="20.0"/>
                     </HBox.margin>
                 </Label>
+
             </children>
         </HBox>
     </top>
 
-    <!--MENU LATERAL-->
+
+    <!-- MENU LATERAL -->
     <left>
-        <VBox prefWidth="200.0" styleClass="sidebar" BorderPane.alignment="CENTER">
+        <VBox prefWidth="205.0"
+              spacing="5.0"
+              styleClass="sidebar"
+              BorderPane.alignment="CENTER">
+
+            <padding>
+                <Insets top="22.0"
+                        right="8.0"
+                        bottom="15.0"
+                        left="8.0"/>
+            </padding>
+
             <children>
-                <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showHome" styleClass="nav-button"
+
+                <Label text="MENÚ PRINCIPAL" textFill="#e9d8ff">
+                    <font>
+                        <Font name="System Bold" size="11.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="13.0" bottom="12.0"/>
+                    </VBox.margin>
+                </Label>
+
+                <Button maxWidth="Infinity"
+                        mnemonicParsing="false"
+                        onAction="#showHome"
+                        styleClass="nav-button"
                         text="Inicio"/>
-                <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showCliente" styleClass="nav-button"
+
+                <Button maxWidth="Infinity"
+                        mnemonicParsing="false"
+                        onAction="#showCliente"
+                        styleClass="nav-button"
                         text="Clientes"/>
-                <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showHabitaciones" styleClass="nav-button"
+
+                <Button maxWidth="Infinity"
+                        mnemonicParsing="false"
+                        onAction="#showHabitaciones"
+                        styleClass="nav-button"
                         text="Habitaciones"/>
+
+                <Button maxWidth="Infinity"
+                        mnemonicParsing="false"
+                        onAction="#showReservas"
+                        styleClass="nav-button"
+                        text="Reservas"/>
+
                 <Region VBox.vgrow="ALWAYS"/>
-                <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#handleLogout" styleClass="nav-button"
-                        style="-fx-text-fill: #ffd700"
+
+                <Button maxWidth="Infinity"
+                        mnemonicParsing="false"
+                        onAction="#handleLogout"
+                        styleClass="nav-button nav-logout"
                         text="Cerrar Sesión"/>
+
             </children>
         </VBox>
     </left>
+
+
+    <!-- CONTENIDO PRINCIPAL Y PIE -->
     <center>
         <VBox BorderPane.alignment="CENTER">
-            <StackPane fx:id="contentArea" styleClass="content-area" VBox.vgrow="ALWAYS">
+
+            <StackPane fx:id="contentArea"
+                       styleClass="content-area"
+                       VBox.vgrow="ALWAYS">
+
                 <children>
-                    <Label text="Seleccione una opción del Menu" textFill="#999999"/>
+                    <Label text="Seleccione una opción del Menú"
+                           textFill="#999999"/>
                 </children>
+
             </StackPane>
-            <HBox alignment="CENTER" prefHeight="20.0">
+
+            <HBox alignment="CENTER"
+                  prefHeight="20.0"
+                  style="-fx-background-color: white;">
+
                 <children>
                     <Label text="©Copyright KAS-2026"
                            textFill="#999999"/>
                 </children>
+
             </HBox>
+
         </VBox>
     </center>
+
 </BorderPane>
