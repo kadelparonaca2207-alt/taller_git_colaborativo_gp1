@@ -57,7 +57,7 @@ public class HabitacionFormController {
             int numero = Integer.parseInt(txtNumero.getText().trim());
             int piso = Integer.parseInt(txtPiso.getText().trim());
             double precio = Double.parseDouble(txtPrecio.getText().trim());
-            if (numero <= 0 || piso <= 0 || precio <= 0) {
+            if (numero <= 0 || piso <= 0 || !Double.isFinite(precio) || precio <= 0) {
                 Alerts.viewAlerts("Datos incorrectos", "Número, piso y precio deben ser mayores que cero.", "WARNING").showAndWait();
                 return false;
             }

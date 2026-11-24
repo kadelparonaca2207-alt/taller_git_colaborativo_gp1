@@ -13,30 +13,39 @@ public class UsuarioDaoImpl implements IUsuarioDao {
     @Override
     public Usuario login(String user, String password) {
         Usuario u = null;
-        String query = "SELECT * FROM usuario WHERE user = ? AND password = ?;";
+        String query = "SELECT * FROM usuario WHERE user = ? AND password = ?";
         try (Connection cn = ConexionDB.getConnection();
-             PreparedStatement ps = cn.prepareStatement(query)){
+             PreparedStatement ps = cn.prepareStatement(query)) {
             ps.setString(1, user);
             ps.setString(2, password);
-
-            try (ResultSet rs = ps.executeQuery()){
-                if (rs.next()){
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
                     u = new Usuario();
                     u.setIdusuario(rs.getInt("idusuario"));
                     u.setUser(rs.getString("user"));
                     u.setTipoUser(rs.getString("tipoUser"));
-
                     System.out.println("Login exitoso");
                 }
             }
-        } catch (SQLException e){
-            System.out.println("Error al realizar la operación " + e);
+        } catch (SQLException e) {
+            System.out.println("Error al realizar el login: " + e.getMessage());
         }
         return u;
     }
 
     @Override
     public boolean insertUser(Usuario usuario) {
-        return false;
+        boolean flag = false;
+        String query = "INSERT INTO usuario (user, password, tipoUser) VALUES (?, ?, ?)";
+        try (Connection cn = ConexionDB.getConnection();
+             PreparedStatement ps = cn.prepareStatement(query)) {
+            ps.setString(1, usuario.getUser());
+            ps.setString(2, usuario.getPassword());
+            ps.setString(3, usuario.getTipoUser());
+            flag = ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Error al registrar usuario: " + e.getMessage());
+        }
+        return flag;
     }
 }

@@ -54,7 +54,7 @@ public class UsuarioController {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setMaximized(true);
-            stage.setTitle("Hotel KAF - Sistema de reservas");
+            stage.setTitle("Hotel KAS - Sistema de reservas");
             stage.show();
         } catch (IOException e) {
             Alerts.viewAlerts("Error", "No se pudo abrir la ventana principal: " + e.getMessage(), "ERROR").showAndWait();

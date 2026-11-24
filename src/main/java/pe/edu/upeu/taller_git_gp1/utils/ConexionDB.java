@@ -60,6 +60,7 @@ public class ConexionDB {
                 String dbPath = directory.getAbsolutePath() + "/hotel_KAS.db";
 
                 String url = "jdbc:sqlite:" + dbPath;
+                System.out.println("Base de datos utilizada: " + dbPath);
 
                 Class.forName("org.sqlite.JDBC");
 

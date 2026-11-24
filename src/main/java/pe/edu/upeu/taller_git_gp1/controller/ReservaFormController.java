@@ -48,8 +48,9 @@ public class ReservaFormController {
 
         cbHabitacion.setItems(FXCollections.observableArrayList());
         for (Habitacion habitacion : habitaciones) {
+            String estado = "Mantenimiento".equalsIgnoreCase(habitacion.getEstado()) ? " (Mantenimiento)" : "";
             cbHabitacion.getItems().add("N.° " + habitacion.getNumero_hab() + " - " + habitacion.getTipo() +
-                    " - S/ " + String.format("%.2f", habitacion.getPrecio()) + " (" + habitacion.getEstado() + ")");
+                    " - S/ " + String.format("%.2f", habitacion.getPrecio()) + estado);
         }
 
         cbEstado.getItems().addAll("Pendiente", "Confirmada", "Cancelada");
@@ -104,9 +105,11 @@ public class ReservaFormController {
         }
 
         Habitacion habitacion = habitaciones.get(cbHabitacion.getSelectionModel().getSelectedIndex());
-        boolean mismaHabitacion = reserva != null && reserva.getHabitacion_id() == habitacion.getId();
-        if (!"Disponible".equalsIgnoreCase(habitacion.getEstado()) && !mismaHabitacion) {
-            Alerts.viewAlerts("Habitación no disponible", "Seleccione una habitación que tenga estado Disponible.", "WARNING").showAndWait();
+        // El estado "Ocupada" no bloquea todas las fechas; la disponibilidad se revisa abajo.
+        // Solo una habitación en mantenimiento queda bloqueada para nuevas reservas.
+        if ("Mantenimiento".equalsIgnoreCase(habitacion.getEstado()) &&
+                !"Cancelada".equalsIgnoreCase(cbEstado.getValue())) {
+            Alerts.viewAlerts("Habitación en mantenimiento", "Seleccione una habitación que no esté en mantenimiento.", "WARNING").showAndWait();
             return false;
         }
 

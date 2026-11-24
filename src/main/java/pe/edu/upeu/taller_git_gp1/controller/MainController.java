@@ -27,7 +27,7 @@ public class MainController {
     @FXML
     public void initialize() {
         if (UserSession.getInstance().getUserLogger() != null) {
-            lblUsuario.setText("Bienvenido" + UserSession.getInstance().getUserLogger().getUser());
+            lblUsuario.setText("Bienvenido, " + UserSession.getInstance().getUserLogger().getUser());
         }
         showHome();
     }

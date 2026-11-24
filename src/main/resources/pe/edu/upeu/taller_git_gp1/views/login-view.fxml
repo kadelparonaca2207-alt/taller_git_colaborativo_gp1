@@ -25,7 +25,7 @@
                       styleClass="left-pane"
                       HBox.hgrow="ALWAYS">
                     <children>
-                        <Label text="Hotel KAF" textFill="white">
+                        <Label text="Hotel KAS" textFill="white">
                             <font>
                                 <Font name="System Bold" size="48.0"/>
                             </font>
