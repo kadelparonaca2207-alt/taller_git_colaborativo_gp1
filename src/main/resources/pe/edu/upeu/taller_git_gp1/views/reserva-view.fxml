@@ -34,6 +34,7 @@
                 <TableColumn fx:id="colEntrada" text="Fecha entrada" prefWidth="115.0"/>
                 <TableColumn fx:id="colSalida" text="Fecha salida" prefWidth="115.0"/>
                 <TableColumn fx:id="colEstado" text="Estado" prefWidth="110.0"/>
+                <TableColumn fx:id="colTotal" text="Total (S/)" prefWidth="100.0"/>
             </columns>
         </TableView>
     </children>

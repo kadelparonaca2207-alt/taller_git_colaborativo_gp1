@@ -119,6 +119,7 @@ public class ConexionDB {
                 "fecha_entrada TEXT NOT NULL, " +
                 "fecha_salida TEXT NOT NULL, " +
                 "estado TEXT NOT NULL DEFAULT 'Pendiente', " +
+                "total REAL NOT NULL DEFAULT 0, " +
                 "FOREIGN KEY (cliente_id) REFERENCES cliente(id) ON UPDATE CASCADE ON DELETE RESTRICT, " +
                 "FOREIGN KEY (habitacion_id) REFERENCES habitacion(id) ON UPDATE CASCADE ON DELETE RESTRICT)";
 
@@ -128,7 +129,21 @@ public class ConexionDB {
             stmt.execute(sqlUsuario);
             stmt.execute(sqlHabitacion);
             stmt.execute(sqlReserva);
-
+            boolean existeTotal = false;
+            try (ResultSet columnas = stmt.executeQuery("PRAGMA table_info(reserva)")) {
+                while (columnas.next()) {
+                    if ("total".equalsIgnoreCase(columnas.getString("name"))) {
+                        existeTotal = true;
+                        break;
+                    }
+                }
+            }
+            if (!existeTotal) {
+                stmt.execute("ALTER TABLE reserva ADD COLUMN total REAL NOT NULL DEFAULT 0");
+            }
+            stmt.executeUpdate("UPDATE reserva SET total = (julianday(fecha_salida) - julianday(fecha_entrada)) * " +
+                    "(SELECT precio FROM habitacion WHERE habitacion.id = reserva.habitacion_id) " +
+                    "WHERE total = 0 AND julianday(fecha_salida) > julianday(fecha_entrada)");
 
             boolean existeAdmin = false;
 

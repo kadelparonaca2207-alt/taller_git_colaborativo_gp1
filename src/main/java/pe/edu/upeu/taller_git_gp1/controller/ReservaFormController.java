@@ -18,10 +18,12 @@ import pe.edu.upeu.taller_git_gp1.modelo.Reserva;
 import pe.edu.upeu.taller_git_gp1.utils.Alerts;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class ReservaFormController {
     @FXML private Label lblTitulo;
+    @FXML private Label lblTotal;
     @FXML private ComboBox<String> cbCliente;
     @FXML private ComboBox<String> cbHabitacion;
     @FXML private DatePicker dpFechaEntrada;
@@ -55,6 +57,10 @@ public class ReservaFormController {
 
         cbEstado.getItems().addAll("Pendiente", "Confirmada", "Cancelada");
         cbEstado.setValue("Pendiente");
+        cbHabitacion.setOnAction(e -> calcularTotal());
+        dpFechaEntrada.valueProperty().addListener((obs, anterior, nuevo) -> calcularTotal());
+        dpFechaSalida.valueProperty().addListener((obs, anterior, nuevo) -> calcularTotal());
+        calcularTotal();
     }
 
     public boolean isSaved() {
@@ -88,6 +94,7 @@ public class ReservaFormController {
                 dpFechaSalida.setValue(LocalDate.parse(r.getFecha_salida()));
             }
             cbEstado.setValue(r.getEstado());
+            calcularTotal();
         }
     }
 
@@ -105,8 +112,6 @@ public class ReservaFormController {
         }
 
         Habitacion habitacion = habitaciones.get(cbHabitacion.getSelectionModel().getSelectedIndex());
-        // El estado "Ocupada" no bloquea todas las fechas; la disponibilidad se revisa abajo.
-        // Solo una habitación en mantenimiento queda bloqueada para nuevas reservas.
         if ("Mantenimiento".equalsIgnoreCase(habitacion.getEstado()) &&
                 !"Cancelada".equalsIgnoreCase(cbEstado.getValue())) {
             Alerts.viewAlerts("Habitación en mantenimiento", "Seleccione una habitación que no esté en mantenimiento.", "WARNING").showAndWait();
@@ -122,6 +127,22 @@ public class ReservaFormController {
             }
         }
         return true;
+    }
+
+    private double calcularTotal() {
+        if (lblTotal == null || cbHabitacion.getSelectionModel().getSelectedIndex() < 0 ||
+                dpFechaEntrada.getValue() == null || dpFechaSalida.getValue() == null ||
+                !dpFechaSalida.getValue().isAfter(dpFechaEntrada.getValue())) {
+            if (lblTotal != null) {
+                lblTotal.setText("S/ 0.00");
+            }
+            return 0;
+        }
+        Habitacion habitacion = habitaciones.get(cbHabitacion.getSelectionModel().getSelectedIndex());
+        long noches = ChronoUnit.DAYS.between(dpFechaEntrada.getValue(), dpFechaSalida.getValue());
+        double total = noches * habitacion.getPrecio();
+        lblTotal.setText(String.format("S/ %.2f (%d noches)", total, noches));
+        return total;
     }
 
     @FXML
@@ -142,6 +163,7 @@ public class ReservaFormController {
         reserva.setFecha_entrada(dpFechaEntrada.getValue().toString());
         reserva.setFecha_salida(dpFechaSalida.getValue().toString());
         reserva.setEstado(cbEstado.getValue());
+        reserva.setTotal(calcularTotal());
         saved = true;
         cerrar();
     }

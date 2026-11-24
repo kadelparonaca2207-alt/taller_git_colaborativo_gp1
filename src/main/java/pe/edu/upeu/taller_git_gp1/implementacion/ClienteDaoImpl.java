@@ -13,7 +13,6 @@ import java.util.List;
 
 public class ClienteDaoImpl implements IClienteDao {
 
-    // La base original y la base que ya tiene el usuario usan distinto nombre para correo.
     private String obtenerColumnaCorreo(Connection cn) throws SQLException {
         boolean tieneCorreo = false;
         boolean tieneCorreoElectronico = false;
@@ -109,7 +108,6 @@ public class ClienteDaoImpl implements IClienteDao {
                 ps.setString(parametro++, c.getNombre());
                 ps.setString(parametro++, c.getApellido());
                 if (tieneTipo) {
-                    // El sistema trabaja únicamente con DNI; no se agrega otro campo al formulario.
                     ps.setString(parametro++, "DNI");
                 }
                 ps.setInt(parametro++, c.getNumero_documento());

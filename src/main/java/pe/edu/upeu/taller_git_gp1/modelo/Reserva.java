@@ -9,6 +9,7 @@ public class Reserva {
     private final StringProperty fecha_entrada = new SimpleStringProperty();
     private final StringProperty fecha_salida = new SimpleStringProperty();
     private final StringProperty estado = new SimpleStringProperty();
+    private final DoubleProperty total = new SimpleDoubleProperty();
     private final ObjectProperty<Cliente> Cliente = new SimpleObjectProperty<>();
     private final ObjectProperty<Habitacion> Habitacion = new SimpleObjectProperty<>();
 
@@ -38,6 +39,19 @@ public class Reserva {
 
     public final ObjectProperty<Cliente> ClienteProperty() {
         return Cliente;
+    }
+
+
+    public final double getTotal() {
+        return total.get();
+    }
+
+    public final void setTotal(double value) {
+        total.set(value);
+    }
+
+    public final DoubleProperty totalProperty() {
+        return total;
     }
 
     public final String getEstado() {

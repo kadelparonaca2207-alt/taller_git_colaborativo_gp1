@@ -19,7 +19,7 @@ public class ReservaDaoImpl implements IReservaDao {
 
     private static final String SELECT_RESERVAS =
             "SELECT r.id AS reserva_id, r.cliente_id, r.habitacion_id, " +
-            "r.fecha_entrada, r.fecha_salida, r.estado, " +
+            "r.fecha_entrada, r.fecha_salida, r.estado, r.total, " +
             "c.id AS cliente_obj_id, c.nombre AS cliente_nombre, " +
             "c.apellido AS cliente_apellido, c.numero_documento AS cliente_documento, " +
             "h.id AS habitacion_obj_id, h.numero_hab AS habitacion_numero, " +
@@ -37,6 +37,7 @@ public class ReservaDaoImpl implements IReservaDao {
         r.setFecha_entrada(rs.getString("fecha_entrada"));
         r.setFecha_salida(rs.getString("fecha_salida"));
         r.setEstado(rs.getString("estado"));
+        r.setTotal(rs.getDouble("total"));
 
         if (rs.getObject("cliente_obj_id") != null) {
             Cliente c = new Cliente();
@@ -86,8 +87,8 @@ public class ReservaDaoImpl implements IReservaDao {
             System.out.println("No se insertó la reserva porque existe un cruce de fechas.");
             return false;
         }
-        String query = "INSERT INTO reserva (cliente_id, habitacion_id, fecha_entrada, fecha_salida, estado) " +
-                "VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO reserva (cliente_id, habitacion_id, fecha_entrada, fecha_salida, estado, total) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection cn = ConexionDB.getConnection();
              PreparedStatement ps = cn.prepareStatement(query)) {
             ps.setInt(1, r.getCliente_id());
@@ -95,6 +96,7 @@ public class ReservaDaoImpl implements IReservaDao {
             ps.setString(3, r.getFecha_entrada());
             ps.setString(4, r.getFecha_salida());
             ps.setString(5, r.getEstado());
+            ps.setDouble(6, r.getTotal());
             flag = ps.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("Error al insertar reserva: " + e.getMessage());
@@ -111,7 +113,7 @@ public class ReservaDaoImpl implements IReservaDao {
             return false;
         }
         String query = "UPDATE reserva SET cliente_id = ?, habitacion_id = ?, fecha_entrada = ?, " +
-                "fecha_salida = ?, estado = ? WHERE id = ?";
+                "fecha_salida = ?, estado = ?, total = ? WHERE id = ?";
         try (Connection cn = ConexionDB.getConnection();
              PreparedStatement ps = cn.prepareStatement(query)) {
             ps.setInt(1, r.getCliente_id());
@@ -119,7 +121,8 @@ public class ReservaDaoImpl implements IReservaDao {
             ps.setString(3, r.getFecha_entrada());
             ps.setString(4, r.getFecha_salida());
             ps.setString(5, r.getEstado());
-            ps.setInt(6, r.getId());
+            ps.setDouble(6, r.getTotal());
+            ps.setInt(7, r.getId());
             flag = ps.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("Error al actualizar reserva: " + e.getMessage());

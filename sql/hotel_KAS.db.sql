@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS "reserva" (
 	"fecha_entrada"	TEXT NOT NULL,
 	"fecha_salida"	TEXT NOT NULL,
 	"estado"	TEXT NOT NULL DEFAULT 'Pendiente',
+	"total"	REAL NOT NULL DEFAULT 0,
 	PRIMARY KEY("id" AUTOINCREMENT)
 );
 CREATE TABLE IF NOT EXISTS "usuario" (

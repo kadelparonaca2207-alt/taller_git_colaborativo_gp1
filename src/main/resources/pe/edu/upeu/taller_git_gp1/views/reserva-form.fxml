@@ -30,6 +30,8 @@
                 <DatePicker fx:id="dpFechaSalida" maxWidth="Infinity" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
                 <Label text="Estado:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
                 <ComboBox fx:id="cbEstado" maxWidth="Infinity" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                <Label text="Total:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <Label fx:id="lblTotal" text="S/ 0.00" style="-fx-font-weight: bold;" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
             </children>
         </GridPane>
         <Label text="La fecha de salida debe ser posterior a la fecha de entrada. Una habitación no puede tener reservas superpuestas." wrapText="true" textFill="#666666"/>

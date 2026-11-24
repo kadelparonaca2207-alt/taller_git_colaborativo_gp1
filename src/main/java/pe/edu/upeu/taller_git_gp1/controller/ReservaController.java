@@ -34,6 +34,7 @@ public class ReservaController {
     @FXML private TableColumn<Reserva, String> colEntrada;
     @FXML private TableColumn<Reserva, String> colSalida;
     @FXML private TableColumn<Reserva, String> colEstado;
+    @FXML private TableColumn<Reserva, String> colTotal;
 
     private final IReservaDao reservaDao = new ReservaDaoImpl();
     private ObservableList<Reserva> listaReservas;
@@ -60,6 +61,7 @@ public class ReservaController {
         colEntrada.setCellValueFactory(cell -> cell.getValue().fecha_entradaProperty());
         colSalida.setCellValueFactory(cell -> cell.getValue().fecha_salidaProperty());
         colEstado.setCellValueFactory(cell -> cell.getValue().estadoProperty());
+        colTotal.setCellValueFactory(cell -> new SimpleStringProperty(String.format("S/ %.2f", cell.getValue().getTotal())));
         cargarDatos();
     }
 
