@@ -27,7 +27,7 @@
                            smooth="true">
 
                     <image>
-                        <Image url="@../IMG/Hotel_KAS.png"/>
+                        <Image url="@../img/Hotel_KAS.png"/>
                     </image>
 
                 </ImageView>

@@ -10,6 +10,7 @@ module pe.edu.upeu.taller_git_gp1 {
     requires java.sql;
     requires javafx.graphics;
     requires javafx.base;
+    requires org.xerial.sqlitejdbc;
 
 
     opens pe.edu.upeu.taller_git_gp1 to javafx.fxml;

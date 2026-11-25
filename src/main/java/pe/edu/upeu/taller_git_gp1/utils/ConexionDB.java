@@ -13,7 +13,6 @@ public class ConexionDB {
 
     private static Connection connection;
 
-    //conexion mode dev
     /*
     public static Connection getConnection() {
         try {
@@ -40,22 +39,18 @@ public class ConexionDB {
     }
     */
 
-    //connection mode prod
     public static Connection getConnection() {
         try {
             if (connection == null || connection.isClosed()) {
 
-                //1. Obtener la carpeta del usuario actual
                 String userHome = System.getProperty("user.home");
 
                 File directory = new File(userHome + "/HotelKAS");
 
-                //2. Si la carpeta no existe, la creamos
                 if (!directory.exists()) {
                     directory.mkdirs();
                 }
 
-                //3. Ruta donde se guardara la base de datos
                 //C:\Users\Nombre\HotelKAS\hotel_KAS.db
                 String dbPath = directory.getAbsolutePath() + "/hotel_KAS.db";
 
@@ -71,7 +66,6 @@ public class ConexionDB {
                     stmt.execute("PRAGMA foreign_keys = ON");
                 }
 
-                //4. Crear las tablas en la BD
                 initDatabase();
 
                 System.out.println("Conexion success");
