@@ -29,7 +29,7 @@
         </HBox>
         <TableView fx:id="tableCliente" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="colId" text="ID" prefWidth="55.0"/>
+                <TableColumn fx:id="colId" text="ID" prefWidth="55.0" visible="false"/>
                 <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150.0"/>
                 <TableColumn fx:id="colApellido" text="Apellido" prefWidth="150.0"/>
                 <TableColumn fx:id="colDocumento" text="Documento" prefWidth="110.0"/>
