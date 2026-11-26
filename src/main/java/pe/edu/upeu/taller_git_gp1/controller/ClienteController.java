@@ -18,12 +18,10 @@ import pe.edu.upeu.taller_git_gp1.utils.Alerts;
 import java.util.Optional;
 
 public class ClienteController {
-
-    //Definimos la tabla
+    
     @FXML
     private TableView<Cliente> tableCliente;
 
-    //Definimos las columnas
     @FXML
     private TableColumn<Cliente, Number> colId;
 
@@ -42,17 +40,14 @@ public class ClienteController {
     @FXML
     private TableColumn<Cliente, String> colTelefono;
 
-    //Campo de busqueda
     @FXML
     private TextField txtBuscar;
 
-    //DAO
     private final IClienteDao clienteDao = new ClienteDaoImpl();
 
     private ObservableList<Cliente> listaClientes;
 
 
-    //Metodo initialize
     @FXML
     public void initialize() {
 
@@ -74,12 +69,10 @@ public class ClienteController {
         colTelefono.setCellValueFactory(
                 cellData -> cellData.getValue().telefonoProperty());
 
-        //Llamamos al metodo
         cargarDatos();
     }
 
 
-    //Metodo para cargar los datos
     private void cargarDatos() {
 
         listaClientes = FXCollections.observableArrayList(clienteDao.listAll());
@@ -88,7 +81,6 @@ public class ClienteController {
     }
 
 
-    //Metodo para eliminar
     @FXML
     private void handleDelete() {
 
@@ -135,7 +127,6 @@ public class ClienteController {
     }
 
 
-    //Metodo para registrar
     @FXML
     private void handleNew() {
 
@@ -143,7 +134,6 @@ public class ClienteController {
     }
 
 
-    //Metodo para editar
     @FXML
     private void handleEdit() {
 
@@ -165,7 +155,6 @@ public class ClienteController {
     }
 
 
-    //Metodo para buscar
     @FXML
     private void handleSearch() {
 
@@ -190,7 +179,6 @@ public class ClienteController {
     }
 
 
-    //Metodo para limpiar la busqueda
     @FXML
     private void handleClear() {
 
@@ -200,7 +188,6 @@ public class ClienteController {
     }
 
 
-    //Metodo para abrir el formulario
     private void showForm(Cliente c) {
 
         try {
